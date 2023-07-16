@@ -1,0 +1,35 @@
+name: shader
+description: A new Flutter project.
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
+  flutter_path_morph: ^2.0.0
+  flutter_shaders: ^0.1.2
+  flutter_sensors: ^1.0.1
+  path_drawing: ^1.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  
+flutter:
+  uses-material-design: true
+  assets:
+    - images/
+  shaders:
+    - shaders/shader.glsl
+    - shaders/shader2.glsl
+    - shaders/shader3.glsl
+    - shaders/star_shader.glsl
+    - shaders/neon_shader.glsl
+    - shaders/animated_neon_shader.glsl
