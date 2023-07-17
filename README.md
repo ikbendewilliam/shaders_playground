@@ -1,6 +1,7 @@
 # Shaders playground
 
-[DEMO](https://ikbendewilliam.github.io/shaders_playground/build/web/#/)
+[DEMO](https://ikbendewilliam.github.io/shaders_playground/build/web/#/) Note: Performance and 
+looks may not be great. Build on mac/mobile for better performance.
 
 ## Shader 1
 This is just a test on what I can do in a shader. Especially what I can pass to the shader.
