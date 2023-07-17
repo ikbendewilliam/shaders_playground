@@ -1,5 +1,5 @@
 #version 460 core
-#define BLUR_RADIUS 16.;
+#define BLUR_RADIUS 16.
 #include<flutter/runtime_effect.glsl>
 
 uniform vec2 resolution;
