@@ -79,8 +79,8 @@ class _AnimatedTextNeonShaderScreenState extends State<AnimatedTextNeonShaderScr
                 (context, shader, child) => AnimatedSampler(
                   (image, size, canvas) {
                     shader
-                      ..setFloat(1, size.width)
-                      ..setFloat(2, size.height)
+                      ..setFloat(0, size.width)
+                      ..setFloat(1, size.height)
                       ..setImageSampler(0, image);
 
                     final paint = Paint()..shader = shader;
