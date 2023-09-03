@@ -5,6 +5,7 @@ import 'package:shader/neon_shader_screen.dart';
 import 'package:shader/shader1_screen.dart';
 import 'package:shader/shader_x_screen.dart';
 import 'package:shader/snap_shader_screen.dart';
+import 'package:shader/snap_shader_with_widget_screen.dart';
 import 'package:shader/star_shader_screen.dart';
 
 void main() {
@@ -74,8 +75,18 @@ class MyHomePage extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               ElevatedButton(
-                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SnapShaderScreen())),
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SnapShaderScreen(pixelated: false))),
                 child: const Text('Snap Effect'),
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SnapShaderScreen(pixelated: true))),
+                child: const Text('Snap Effect Pixelated'),
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SnapShaderWithWidgetScreen())),
+                child: const Text('Snap Effect on text widget'),
               ),
             ],
           ),

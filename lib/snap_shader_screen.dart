@@ -5,7 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 
 class SnapShaderScreen extends StatefulWidget {
-  const SnapShaderScreen({super.key});
+  final bool pixelated;
+
+  const SnapShaderScreen({
+    required this.pixelated,
+    super.key,
+  });
 
   @override
   State<SnapShaderScreen> createState() => _SnapShaderScreenState();
@@ -68,7 +73,7 @@ class _SnapShaderScreenState extends State<SnapShaderScreen> {
           ),
         ),
         child: ShaderBuilder(
-          assetKey: 'shaders/snap_effect_shader.glsl',
+          assetKey: widget.pixelated ? 'shaders/snap_effect_shader_pixelated.glsl' : 'shaders/snap_effect_shader.glsl',
           (context, shader, child) => CustomPaint(
             size: MediaQuery.sizeOf(context),
             painter: ShaderPainter(
@@ -117,7 +122,7 @@ class ShaderPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     index = 0;
     _sendVec2ToShader(Offset(size.width, size.height));
-    shader.setFloat(index++, secondsPassed < 20 ? secondsPassed : 5);
+    shader.setFloat(index++, secondsPassed);
     shader.setImageSampler(0, image);
 
     final paint = Paint()..shader = shader;

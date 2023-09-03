@@ -2,6 +2,7 @@
 
 #include<flutter/runtime_effect.glsl>
 
+#define pixels 100.// The number of pixels
 #define delay 2.// Depends on the opacity of your image, if the corner is transparent,you can set it to 2., otherwise increase it
 #define duration 5.// The duration of the animation, the larger the value,the slower the animation
 #define border_size .1// The size of the randomness in the border, the larger the value, the more random and wider the border
@@ -32,8 +33,8 @@ vec4 disappearing_color(vec3 texColor,vec3 darkness,float border,float opacity_f
 vec4 particals_effect_color(vec2 uv,float deltaTime,vec3 darkness,float opacity_from_border){
     vec4 texColor=texture(imageTexture,uv);
     float original_alpha=texColor.a;
-    float x=uv.x;
-    float y=uv.y;
+    float x=int(uv.x*pixels)/pixels;
+    float y=int(uv.y*pixels)/pixels;
     float border=x+y-deltaTime+hash(x,y)*border_size;
     float opacity_particals_effect=smoothstep(border_position-.1,particals_effect_length_position,border*2)*original_alpha*(1.-opacity_from_border)*step(particles_amount,hash2(x,y));
     return vec4(darkness*opacity_particals_effect,opacity_particals_effect);
@@ -46,8 +47,8 @@ void main()
     vec3 darkness=vec3(darkness_color);
     float original_alpha=texColor.a;
     float deltaTime=(iTime-delay)/duration;
-    float x=uv.x;
-    float y=uv.y;
+    float x=int(uv.x*pixels)/pixels;
+    float y=int(uv.y*pixels)/pixels;
     float border=x+y-deltaTime+hash(x,y)*border_size;
     float opacity_from_border=step(border_position,border);
     
@@ -57,4 +58,3 @@ void main()
     vec2 uv_particle=vec2(x,y)+vec2(sin(delta*delta)-delta,delta);
     fragColor+=particals_effect_color(uv_particle,deltaTime,darkness,opacity_from_border);
 }
-
