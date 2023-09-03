@@ -33,3 +33,4 @@ flutter:
     - shaders/star_shader.glsl
     - shaders/neon_shader.glsl
     - shaders/animated_neon_shader.glsl
+    - shaders/snap_effect_shader.glsl

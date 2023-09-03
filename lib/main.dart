@@ -4,6 +4,7 @@ import 'package:shader/animated_text_neon_shader_screen.dart';
 import 'package:shader/neon_shader_screen.dart';
 import 'package:shader/shader1_screen.dart';
 import 'package:shader/shader_x_screen.dart';
+import 'package:shader/snap_shader_screen.dart';
 import 'package:shader/star_shader_screen.dart';
 
 void main() {
@@ -71,6 +72,11 @@ class MyHomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const AnimatedTextNeonShaderScreen())),
                 child: const Text('NeonWidgetText'),
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const SnapShaderScreen())),
+                child: const Text('Snap Effect'),
               ),
             ],
           ),
