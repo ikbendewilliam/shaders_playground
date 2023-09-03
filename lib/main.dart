@@ -35,9 +35,8 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
+            shrinkWrap: true,
             children: [
               ElevatedButton(
                 onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Shader1Screen())),

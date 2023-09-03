@@ -2,9 +2,10 @@
 
 #include<flutter/runtime_effect.glsl>
 
-#define delay 2. # Depends on the opacity of your image,if the corner is transparent,you can set it to 2.,otherwise increase it
-#define duration 10. # The duration of the animation,the larger the value,the slower the animation
-#define border_size .1 #The size of the randomness in the border,the larger the value,the more random and wider the border
+#define pixels 100.// The number of pixels
+#define delay 2.// Depends on the opacity of your image, if the corner is transparent,you can set it to 2., otherwise increase it
+#define duration 10.// The duration of the animation, the larger the value,the slower the animation
+#define border_size .1// The size of the randomness in the border, the larger the value, the more random and wider the border
 
 uniform vec2 resolution;
 uniform float iTime;
@@ -23,11 +24,17 @@ void main()
 {
     vec2 uv=FlutterFragCoord().xy/resolution.xy;
     vec4 texColor=texture(imageTexture,uv);
+    vec3 darkness=vec3(.3);
+    float original_alpha=texColor.a;
     float deltaTime=(iTime-delay)/duration;
-    float x=int(uv.x*100)/100.;
-    float y=int(uv.y*100)/100.;
+    float x=int(uv.x*pixels)/pixels;
+    float y=int(uv.y*pixels)/pixels;
     float border=x+y-deltaTime+hash(x,y)*border_size;
-    float opacity=step(.5,border);
-    float colorDarkness=smoothstep(.6,.35,border);
-    fragColor=vec4((texColor.rgb-vec3(colorDarkness))*opacity,texColor.a*opacity);
+    float opacity=step(.5,border)*original_alpha;
+    float darkness_level=smoothstep(.8,.5,border);
+    
+    float opacity_particals_effect=smoothstep(.3,.5,border)*(1-opacity)*original_alpha;
+    vec4 particals_effect_color=vec4(vec3(.3)*opacity_particals_effect,opacity_particals_effect);
+    
+    fragColor=particals_effect_color+vec4(mix(texColor.rgb,darkness,darkness_level)*opacity,opacity);
 }
