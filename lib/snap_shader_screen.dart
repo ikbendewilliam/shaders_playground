@@ -57,7 +57,16 @@ class _SnapShaderScreenState extends State<SnapShaderScreen> {
     }
     return Scaffold(
       body: Container(
-        color: Colors.black,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.blueGrey.shade200,
+              Colors.blueGrey.shade500,
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
         child: ShaderBuilder(
           assetKey: 'shaders/snap_effect_shader.glsl',
           (context, shader, child) => CustomPaint(
@@ -111,17 +120,10 @@ class ShaderPainter extends CustomPainter {
     shader.setFloat(index++, secondsPassed < 20 ? secondsPassed : 5);
     shader.setImageSampler(0, image);
 
-    final paint = Paint()..color = Colors.blueGrey;
-    final paint2 = Paint()
-      ..shader = shader
-      ..blendMode = BlendMode.srcOver;
+    final paint = Paint()..shader = shader;
     canvas.drawRect(
       Rect.fromLTWH(0, 0, size.width, size.height),
       paint,
-    );
-    canvas.drawRect(
-      Rect.fromLTWH(0, 0, size.width, size.height),
-      paint2,
     );
   }
 
